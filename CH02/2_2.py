@@ -1,6 +1,9 @@
 
 
 import numpy as np
+from mayavi.tools.filters import warp_scalar
+from matplotlib.pyplot import xlabel, ylabel
+from mayavi.tools.decorations import zlabel
 
 
 x = np.linspace(0,2*np.pi,10)
@@ -119,3 +122,15 @@ a = np.array([1,2,3,4])
 print("a",a)
 result = np.add.reduceat(a,indices=[0,1,0,2,0,3,0])
 print("result",result)
+
+
+##########################################
+from mayavi import mlab
+
+x,y = np.ogrid[-2:2:20,-2:2:20]
+z = x*np.exp(-x**2 -y**2)
+
+pl = mlab.surf(x,y,z, warp_scale="auto")
+mlab.axes(xlabel='x',ylabel='y',zlabel='z')
+mlab.outline(pl)
+
