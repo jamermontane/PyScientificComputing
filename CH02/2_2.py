@@ -22,27 +22,21 @@ import time
 import math
 
 
-#===============================================================================
-# def xrange(x):
-#     n=0
-#     while n<x:
-#         yield n
-#===============================================================================
 
 
-x = [i*0.001 for i in xrange(10000)]
+x = [i*0.001 for i in range(10000)]
 start = time.clock()
 for i,t in enumerate(x):
     x[i] = math.sin(t)
 print("math.sin:",time.clock()-start)
 
-x = [i*0.001 for i in xrange(10000)]
+x = [i*0.001 for i in range(10000)]
 x = np.array(x)
 start = time.clock()
 np.sin(x,x)
 print("numpy.sin:",time.clock()-start)    
 
-x = [i*0.001 for i in xrange(10000)]
+x = [i*0.001 for i in range(10000)]
 start = time.clock()
 for i,t in enumerate(x):
     x[i] = np.sin(t)
@@ -119,6 +113,7 @@ print(np.add.accumulate([1,2,3]))
 print(np.add.accumulate([[1,2,3],[4,5,6]],axis=1))        
 
 a = np.array([1,2,3,4])
+
 print("a",a)
 result = np.add.reduceat(a,indices=[0,1,0,2,0,3,0])
 print("result",result)
@@ -127,10 +122,26 @@ print("result",result)
 ##########################################
 from mayavi import mlab
 
-x,y = np.ogrid[-2:2:20,-2:2:20]
-z = x*np.exp(-x**2 -y**2)
+x,y = np.ogrid[-2:2:20j,-2:2:20j]
+z = x * np.exp(- x**2 - y**2)
 
 pl = mlab.surf(x,y,z, warp_scale="auto")
 mlab.axes(xlabel='x',ylabel='y',zlabel='z')
 mlab.outline(pl)
+
+
+##############2.2.2#################
+print(np.add.reduce([1,2,3]))
+print(np.add.reduce([[1,2,3],[4,5,6]],axis=1))
+print(np.add.accumulate([1,2,3]))
+print(np.add.accumulate([[1,2,3],[4,5,6]],axis=1))
+
+
+
+a = np.array([1,2,3,4])
+result = np.add.reduceat(a,indices=[0,1,0,2,0,3,0])
+print("result:",result)
+
+
+print(np.multiply.outer([1,2,3,4,5],[2,3,4]))
 
